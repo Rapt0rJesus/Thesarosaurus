@@ -10,6 +10,9 @@ def ReturnDefinition(word):
             choice = input(f"Could not find this word. Did you mean {alt[0]} ")
             if choice.lower() == 'y':
                 return data[alt[0]]
+            else:
+                print("This word does not exist")
+                return " "
         else:
             print("This word does not exist")
             return " "

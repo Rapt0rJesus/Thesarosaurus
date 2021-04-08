@@ -1,2 +1,4 @@
 # Thesarosaurus
-Udemy python courses project one: A thesaurus
+A simple Command Line Thesaurus using Python.
+Done as more of a warmup, really.
+Needs some output optimisation still

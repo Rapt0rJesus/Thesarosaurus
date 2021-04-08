@@ -3,8 +3,22 @@ from difflib import SequenceMatcher, get_close_matches
 
 data = json.load(open("data.json"))
 
+def CheckWord(word):
+    if word in data:
+        return word
+    elif word not in data and word.islower():
+        word = word.title()
+        CheckWord(word)
+    elif word not in data and not word.isupper():
+        word = word.upper()
+        CheckWord(word)
+    return word.lower()
+
+
 def ReturnDefinition(word):
-    if word not in data:
+    if word in data:
+        return data[word]
+    elif word not in data:
         alt = get_close_matches(word, data.keys())
         if len(alt)>0:
             choice = input(f"Could not find this word. Did you mean {alt[0]} ")
@@ -16,7 +30,7 @@ def ReturnDefinition(word):
         else:
             print("This word does not exist")
             return " "
-    return data[word]
+    return " "
 
 word = input("Enter a word ")
-print(*ReturnDefinition(word.lower()), sep = "\n OR \n")
+print(*ReturnDefinition(CheckWord(word)), sep = "\n OR \n")
